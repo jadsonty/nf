@@ -14,8 +14,13 @@ public class Cliente implements Serializable {
     private String codigo;
     private String nome;
 
-    public Cliente(){
+    public Cliente() {
 
+    }
+
+    public Cliente(Cliente cliente){
+
+        this.cliente = cliente;
     }
 
     public Cliente(int id, String codigo, String nome) {
@@ -23,6 +28,9 @@ public class Cliente implements Serializable {
         this.codigo = codigo;
         this.nome = nome;
     }
+
+    @OneToOne
+    private Cliente cliente;
 
     public int getId() {
         return id;

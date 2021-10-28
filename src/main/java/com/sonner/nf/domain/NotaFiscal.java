@@ -13,13 +13,19 @@ public class NotaFiscal implements Serializable {
     private int id;
     private String numero;
 
-   public NotaFiscal(){
+    public NotaFiscal() {
 
-   }
+    }
 
-    public NotaFiscal(int id, String numero) {
+    public NotaFiscal(Cliente cliente){
+
+       this.cliente = cliente;
+    }
+
+    public NotaFiscal(int id, String numero, Cliente cliente) {
         this.id = id;
         this.numero = numero;
+        this.cliente = cliente;
     }
 
     @ManyToOne
