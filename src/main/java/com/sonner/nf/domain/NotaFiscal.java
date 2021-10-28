@@ -5,24 +5,25 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Cliente implements Serializable {
+public class NotaFiscal implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String codigo;
-    private String nome;
+    private String numero;
 
-    public Cliente(){
+   public NotaFiscal(){
 
-    }
+   }
 
-    public Cliente(int id, String codigo, String nome) {
+    public NotaFiscal(int id, String numero) {
         this.id = id;
-        this.codigo = codigo;
-        this.nome = nome;
+        this.numero = numero;
     }
+
+    @ManyToOne
+    private Cliente cliente;
 
     public int getId() {
         return id;
@@ -32,28 +33,20 @@ public class Cliente implements Serializable {
         this.id = id;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public String getNumero() {
+        return numero;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Cliente cliente = (Cliente) o;
-        return id == cliente.id;
+        NotaFiscal that = (NotaFiscal) o;
+        return id == that.id;
     }
 
     @Override

@@ -1,27 +1,32 @@
 package com.sonner.nf.domain;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Cliente implements Serializable {
+public class Produto implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String codigo;
-    private String nome;
+    private String descricao;
+    private double preco;
 
-    public Cliente(){
+    public Produto(){
 
     }
 
-    public Cliente(int id, String codigo, String nome) {
+    public Produto(int id, String codigo, String descricao, double preco) {
         this.id = id;
         this.codigo = codigo;
-        this.nome = nome;
+        this.descricao = descricao;
+        this.preco = preco;
     }
 
     public int getId() {
@@ -40,20 +45,28 @@ public class Cliente implements Serializable {
         this.codigo = codigo;
     }
 
-    public String getNome() {
-        return nome;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Cliente cliente = (Cliente) o;
-        return id == cliente.id;
+        Produto produto = (Produto) o;
+        return id == produto.id;
     }
 
     @Override
