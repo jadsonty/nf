@@ -26,7 +26,7 @@ public class Produto implements Serializable {
 
     private String codigo;
 
-    private String descricao;
+    private String nome;
 
     private BigDecimal preco;
 
