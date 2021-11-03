@@ -29,5 +29,4 @@ public class Produto implements Serializable {
     private String nome;
 
     private BigDecimal preco;
-
 }

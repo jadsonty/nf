@@ -1,16 +1,15 @@
 package com.sonner.nf.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.aspectj.weaver.ast.Not;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 
 
@@ -30,6 +29,7 @@ public class Cliente implements Serializable {
 
     private String nome;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<NotaFiscal> notasFiscais = new ArrayList<>();
 }

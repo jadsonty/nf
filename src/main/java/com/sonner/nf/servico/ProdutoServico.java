@@ -12,39 +12,39 @@ import java.util.List;
 public class ProdutoServico {
 
     @Autowired
-    private ProdutoRepositorio repository;
+    private ProdutoRepositorio pr;
 
     public Produto saveProduto(Produto produto){
-        return repository.save(produto);
+        return pr.save(produto);
     }
 
     public List<Produto> saveProdutos(List<Produto> produtos) {
-        return repository.saveAll(produtos);
+        return pr.saveAll(produtos);
     }
 
     public List<Produto> getProdutos() {
-        return repository.findAll();
+        return pr.findAll();
     }
 
     public Produto getProdutoById(int id) {
-        return repository.findById(id).orElse(null);
+        return pr.findById(id).orElse(null);
     }
 
     public Produto getProdutoByNome(String nome) {
-        return repository.findByNome(nome);
+        return pr.findByNome(nome);
     }
 
     public String deleteProduto(int id) {
-        repository.deleteById(id);
+        pr.deleteById(id);
         return "Produto de id " + id + "removido";
     }
 
     public Produto updateProduto(Produto produto) {
-        Produto existingProduto = repository.findById(produto.getId()).orElse(null);
+        Produto existingProduto = pr.findById(produto.getId()).orElse(null);
         existingProduto.setCodigo(produto.getCodigo());
         existingProduto.setNome(produto.getNome());
         existingProduto.setPreco(produto.getPreco());
-        return repository.save(existingProduto);
+        return pr.save(existingProduto);
     }
 
 

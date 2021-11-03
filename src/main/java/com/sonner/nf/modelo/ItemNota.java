@@ -1,5 +1,6 @@
 package com.sonner.nf.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -24,10 +25,11 @@ public class ItemNota implements Serializable {
 
     private BigDecimal valorTotal;
 
-    @ManyToOne
-    private Produto produto;
-
+    @JsonIgnore
     @ManyToOne
     private NotaFiscal notaFiscal;
+
+    @ManyToOne
+    private Produto produto;
 
 }
