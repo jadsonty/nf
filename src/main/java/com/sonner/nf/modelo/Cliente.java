@@ -1,6 +1,8 @@
 package com.sonner.nf.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,6 +20,7 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Cliente implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -29,7 +32,6 @@ public class Cliente implements Serializable {
 
     private String nome;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<NotaFiscal> notasFiscais = new ArrayList<>();
 }

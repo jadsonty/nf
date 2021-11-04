@@ -1,6 +1,5 @@
 package com.sonner.nf.controlador;
 
-import com.sonner.nf.modelo.Cliente;
 import com.sonner.nf.modelo.ItemNota;
 import com.sonner.nf.modelo.NotaFiscal;
 import com.sonner.nf.modelo.Produto;
@@ -8,7 +7,6 @@ import com.sonner.nf.servico.ClienteServico;
 import com.sonner.nf.servico.NotaFiscalServico;
 import com.sonner.nf.servico.ProdutoServico;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -54,7 +52,7 @@ public class NotaFiscalControle {
     public NotaFiscal alterarItemNotaFiscal(@PathVariable Long idNota, @PathVariable Long idItem, @RequestBody ItemNota novoItem) {
         ItemNota itemNotaBD = servico.getItemNotaById(idNota, idItem);
 
-        if(itemNotaBD!=null){
+        if (itemNotaBD != null) {
             Produto produto = produtoServico.getProdutoById(novoItem.getProduto().getId());
             itemNotaBD.setProduto(produto);
             itemNotaBD.setQuantidade(novoItem.getQuantidade());
@@ -64,7 +62,7 @@ public class NotaFiscalControle {
 
     }
 
-        @PostMapping("/adicionar-varios")
+    @PostMapping("/adicionar-varios")
     public List<NotaFiscal> addNotasFiscais(@RequestBody List<NotaFiscal> notasFiscais) {
         return servico.saveNotasFiscais(notasFiscais);
     }
@@ -93,8 +91,6 @@ public class NotaFiscalControle {
     public String deleteNotaFiscal(@PathVariable long id) {
         return servico.deleteNotaFiscal(id);
     }
-
-
 
 
 }

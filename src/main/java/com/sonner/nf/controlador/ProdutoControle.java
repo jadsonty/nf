@@ -40,7 +40,9 @@ public class ProdutoControle {
     }
 
     @PutMapping("/alterar")
-    public Produto updateProduto(@RequestBody Produto produto) { return servico.updateProduto(produto);}
+    public Produto updateProduto(@RequestBody Produto produto) {
+        return servico.updateProduto(produto);
+    }
 
     @DeleteMapping("/deletar/{id}")
     public String deleteProduto(@PathVariable int id) {
