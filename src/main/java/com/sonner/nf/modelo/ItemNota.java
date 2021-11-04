@@ -1,6 +1,8 @@
 package com.sonner.nf.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,6 +17,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class ItemNota implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -27,7 +30,6 @@ public class ItemNota implements Serializable {
 
     private BigDecimal valorTotal;
 
-    @JsonIgnore
     @ManyToOne
     private NotaFiscal notaFiscal;
 
