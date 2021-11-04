@@ -1,5 +1,7 @@
 package com.sonner.nf.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,6 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Data
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class NotaFiscal implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -32,6 +35,8 @@ public class NotaFiscal implements Serializable {
 
     @OneToMany(mappedBy = "notaFiscal", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemNota> itens = new ArrayList<>();
+
+
 
     public void adicionarItem(ItemNota itemNota){
         itens.add(itemNota);

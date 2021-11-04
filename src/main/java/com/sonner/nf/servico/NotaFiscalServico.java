@@ -4,7 +4,6 @@ import com.sonner.nf.modelo.Cliente;
 import com.sonner.nf.modelo.ItemNota;
 import com.sonner.nf.modelo.NotaFiscal;
 import com.sonner.nf.modelo.Produto;
-import com.sonner.nf.repositorio.ClienteRepositorio;
 import com.sonner.nf.repositorio.NotaFiscalRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +31,7 @@ public class NotaFiscalServico {
             Produto produto = produtoServico.getProdutoById(item.getProduto().getId());
             item.setProduto(produto);
             item.setNotaFiscal(notaFiscal);
+            item.setValorTotal(item.getQuantidade().multiply(item.getProduto().getPreco()));
         }
 
         return repository.save(notaFiscal);
@@ -49,6 +49,10 @@ public class NotaFiscalServico {
         return repository.findById(id).orElse(null);
     }
 
+    public ItemNota getItemNotaById(Long idNota, Long idItem) {
+        return repository.findByItemNotaById(idNota, idItem).orElse(null);
+    }
+
     public NotaFiscal getNotaFiscalByNumero(String numero) {
         return repository.findByNumero(numero);
     }
@@ -62,8 +66,8 @@ public class NotaFiscalServico {
         NotaFiscal existingNotaFiscal = repository.findById(notaFiscal.getId()).orElse(null);
         existingNotaFiscal.setNumero(notaFiscal.getNumero());
         existingNotaFiscal.setData(notaFiscal.getData());
-        existingNotaFiscal.setCliente(notaFiscal.getCliente());
-        existingNotaFiscal.setItens(notaFiscal.getItens());
+
         return repository.save(existingNotaFiscal);
     }
+
 }
